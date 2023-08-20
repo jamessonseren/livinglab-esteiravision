@@ -1,0 +1,15 @@
+*, 
+body
+,html{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+    width: 100%;
+}   
+/* styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap'); /* Importe a URL da fonte que você escolheu */
+
+body {
+  font-family: 'Roboto', sans-serif; /* Aplique a fonte aos elementos de texto do corpo do documento */
+}

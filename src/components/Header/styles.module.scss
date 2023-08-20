@@ -1,0 +1,9 @@
+@use "../../styles//base";
+
+
+.header{
+    width: 100%;
+    display: flex;
+    background-color: base.$primary-500;
+    height: 50px;
+}
