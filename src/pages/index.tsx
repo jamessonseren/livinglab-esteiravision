@@ -77,8 +77,8 @@ const Home = (props:any) =>{
             <select style={{'width':'100%', 'marginTop':'20px','height':'30px'}} onChange={(e)=> setSelectMercado(true)} id="selectMercado">
             <option>Selecione um mercado pareado</option>
                 {
-                  mercadosTocheckArray?.map((m:any)=>{
-                    return ( <option value={m.nome}>{m.nome}</option>)
+                  mercadosTocheckArray?.map((m:any, index:number)=>{
+                    return ( <option key={index} value={m.nome}>{m.nome}</option>)
                   })
                 }
             </select>
@@ -91,20 +91,20 @@ const Home = (props:any) =>{
 
                 <h1 style={{'marginBottom':'10px'}}>Visitante</h1>
                 <ul style={{'listStyle':'none'}}>
-                  <li>
+                  <li key="1">
                       <h4>Faça suas compras com tranquilidade</h4>
                   </li>
-                  <li>
+                  <li key="2">
                       <h4>Otimize seu tempo</h4>
                     
                   </li>
-                  <li>
+                  <li key="3">
                       <h4>Evite filas</h4>     
                   </li>
                 </ul>
                 </div>
               <div className={Styles.action}>
-              <button className={Styles.buttonRedirect} disabled={!selectMercado} onClick={()=> router.push("/inicio-fila")}>
+              <button className={Styles.buttonRedirect} disabled={!selectMercado} onClick={()=> router.push("/inicioFila")}>
                       Continuar como visitante
 
                   </button>
@@ -118,13 +118,13 @@ const Home = (props:any) =>{
 
                 <h1>Cadastro</h1>
                 <ul style={{'listStyle':'none'}}>
-                  <li>
+                  <li key="4">
                       <h4>Vantagens e Benefícios</h4>
                   </li>
-                  <li>
+                  <li key="5">
                       <h4>Vuon</h4>
-                  </li>
-                  <li>
+                  </li >
+                  <li key="6">
                       <h4>Auto Atendimento</h4>
                   </li>
                 </ul>

@@ -1,10 +1,11 @@
+'use client'
 import React, { useState } from 'react'
 import Styles from './styles.module.scss'
 import { Arte2 } from '@/components/ExportSvgs/ExportSvgs'
 import {Modal} from 'antd';
 import router from 'next/router';
 
-function index() {
+function InicioFila() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [numeroItems, setNumeroItems] = useState<any>();
@@ -48,4 +49,4 @@ function index() {
   )
 }
 
-export default index
+export default InicioFila
