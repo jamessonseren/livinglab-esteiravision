@@ -1,1 +1,15 @@
-$primary-500: #708bf8;
+$primary-500: #2C3092;
+$secondary-500:#EF1A23;
+$white:#FFFFFF;
+
+
+
+
+@mixin display-flex($align: center, $justify: center, $direction: row, $gap: 0) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+    gap: $gap;
+  }
+  

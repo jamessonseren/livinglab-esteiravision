@@ -1,0 +1,12 @@
+@use "../../styles//base";
+
+
+.footer{
+    
+    width: 100%;
+    display: fixed;
+    bottom:0px;
+    background-color: base.$primary-500;
+    height: 50px;
+
+}
