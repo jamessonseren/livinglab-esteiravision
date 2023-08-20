@@ -1,10 +1,11 @@
+'use client'
 import React, { useState } from 'react'
 import Styles from './styles.module.scss';
 import router from 'next/router';
 import { Button, Modal } from 'antd';
 import QRCode from '@/components/QRCode/QRcode';
 
-function index() {
+function Senha() {
   const [posicao, setPosicao] = useState("2º");
   const [minutos, setMinutos] = useState("20");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,4 +68,4 @@ function index() {
   )
 }
 
-export default index
+export default Senha
