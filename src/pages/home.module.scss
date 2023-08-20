@@ -134,12 +134,25 @@ width: 100%;
 
 }
 .action{
-    align-items: center;
-    justify-self: end;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column-reverse;
 }
 .info{
     @include base.display-flex(center, space-between, column,10px);
     text-align: center;
+
+}
+
+.buttonSync{
+    @include base.display-flex();
+    width: 100%;
+    border-radius: 10px;
+    height: 60px;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: white;
 
 }

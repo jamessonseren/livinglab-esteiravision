@@ -1,40 +1,86 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from './home.module.scss';
 import Arte from '../../public/arte.png'
 import {Arte1} from '../components/ExportSvgs/ExportSvgs';
 import router from 'next/router';
 import ImagemBanner from '../../public/banner.jpg'
 import Image from 'next/image';
+import {getUserCoordinates, validateCheckIn, calculateDistance, degToRad} from '../utils/Location';
+import { Spin } from 'antd';
 
 
 
 
 const Home = (props:any) =>{
+
+  const [checkIn,setCheckin] = useState();
+  const [mercadosTocheckArray, setMercadosToCheckArray] = useState<any>();
+  const [selectMercado, setSelectMercado] = useState<any>(false);
+  const [loading, setLoading] = useState<any>(false);
+  const [mercados, setMercados] = useState([
+    {
+      nome:'Fort Cafezais',
+      latitude:-20.4977593,
+      longitude:-54.6182799
+    },
+    {
+      nome:'Fort Coronel Antonino',
+      latitude:-20.4977789,
+      longitude:-54.6182798
+    },
+    {
+      nome:'Fort Consul Assaf',
+      latitude:-20.4977841,
+      longitude:-54.6182875
+    }
+  ]);
+
+
+  const getUserLocation = async () =>{
+    let mercadosToCheck = [{}];
+      setLoading(true);
+     await getUserCoordinates().then((result:any)=>{
+      setLoading(false);
+
+      console.log(result);
+      mercados.map(m=>{
+       
+        let r = validateCheckIn(result.latitude, result.longitude,m.latitude,m.longitude,0.1);
+        if(r){
+          mercadosToCheck.push(m);
+        };
+      })
+      setMercadosToCheckArray(mercadosToCheck)
+    });
+    
+    
+  }
+
   return (
+
     <div className={Styles.container}>
      <div className={Styles.capa}>
 
      </div>
       <div className={Styles.box}>
           <div className={Styles.banner}>
-            <div>
-            <a className={Styles.arte}><Arte1/></a>
-
-            </div>
             <div className={Styles.searchArea}>
-            <h1>Bem vindo ao seu assitente de filas</h1>
+            <h1>Bem vindo ao seu assistente de filas</h1>
             <h4 style={{'marginTop':'20px'}}>Selecione o mercado e faça suas compras sem perder tempo!</h4>
-            <h4 style={{'marginTop':'20px'}}>Não precisa de cadastro, apenas Checkin no local, aproveite!</h4>
-            <select style={{'width':'80%', 'marginTop':'20px','height':'30px'}}>
-              <option value="fort1">
-                Fort Cafezais
-              </option>
-              <option value="fort2">
-                Fort Coronel Antonino
-              </option>
-              <option value="fort3">
-                Fort Consul Assaf
-              </option>
+            <h4 style={{'marginTop':'20px'}}>Não precisa de cadastro, apenas check-in no local. Aproveite!</h4>
+
+            <button className={Styles.buttonSync} onClick={()=> getUserLocation()}>
+              <h4>Parear mercado</h4>
+              {loading?<Spin/>:null}
+              <Arte1/>
+            </button>
+            <select style={{'width':'100%', 'marginTop':'20px','height':'30px'}} onChange={(e)=> setSelectMercado(true)} id="selectMercado">
+            <option>Selecione um mercado pareado</option>
+                {
+                  mercadosTocheckArray?.map((m:any)=>{
+                    return ( <option value={m.nome}>{m.nome}</option>)
+                  })
+                }
             </select>
 
             </div>
@@ -58,7 +104,7 @@ const Home = (props:any) =>{
                 </ul>
                 </div>
               <div className={Styles.action}>
-              <button className={Styles.buttonRedirect} onClick={()=> router.push("/inicio-fila")}>
+              <button className={Styles.buttonRedirect} disabled={!selectMercado} onClick={()=> router.push("/inicio-fila")}>
                       Continuar como visitante
 
                   </button>

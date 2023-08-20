@@ -4,7 +4,7 @@ import Styles from './styles.module.scss';
 function Footer() {
   return (
     <div className={Styles.footer}>
-        Footer
+       
         
     </div>
   )
